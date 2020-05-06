@@ -49,16 +49,13 @@ def server_error(e):
 
 @app.route('/')
 def hello():
-    #task_data = {'post_rds_id': 1, 'bucket_path': 'bucket2_npl/15365.female.34.indUnk.Cancer.xml.1588738524.702877.0.txt.1588738555.4731607'}
-   # payload = request.get_data(as_text=True) or '(empty payload)'
-    #mess22=google_NLP(task_data)
-   # mess22=google_NLP(payload)
+    print('Received task with payload: {}'.format(payload))
     return render_template('index.html',messg="hello")
 
 
 
 @app.route('/NLP_to', methods=['POST'])
-def example_task_handler():
+def NLP_to():
     """Log the request payload."""
     payload = request.get_data(as_text=True) or '(empty payload)'
     mess22=google_NLP(payload)
