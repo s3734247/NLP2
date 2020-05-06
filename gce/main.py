@@ -80,7 +80,7 @@ def google_NLP(task_data):
     sql = 'UPDATE Post SET sentiment_score='+str(sentiment.score)+',sentiment_magnitude='+str(sentiment.magnitude)+' WHERE id='+ str(task_data['post_rds_id'])
 
     conn = pymysql.connect(user=bucket_config['sql_user'], password=bucket_config['sql_password'], database=bucket_config['sql_database'],
-            unix_socket="/Users/bennett/Desktop/socket/{}".format(bucket_config['sql_connection']))
+            unix_socket="/opt/app/gce/socket/{}".format(bucket_config['sql_connection']))
     with conn.cursor() as cur:
         cur.execute(sql)
         conn.commit()
