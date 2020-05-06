@@ -12,7 +12,6 @@ import json
 import datetime
 import base64
 import pymysql
-from google.cloud import pubsub_v1
 from google.cloud import tasks_v2
 from google.protobuf import timestamp_pb2
 from google.cloud import language
@@ -52,8 +51,8 @@ def server_error(e):
 def hello():
     task_data = {'post_rds_id': 1, 'bucket_path': 'bucket2_npl/15365.female.34.indUnk.Cancer.xml.1588738524.702877.0.txt.1588738555.4731607'}
     payload = request.get_data(as_text=True) or '(empty payload)'
-    #mess22=google_NLP(task_data)
-    mess22=google_NLP(payload)
+    mess22=google_NLP(task_data)
+    #mess22=google_NLP(payload)
     return render_template('index.html',messg=mess22)
 
 
