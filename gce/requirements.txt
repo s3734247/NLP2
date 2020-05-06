@@ -2,9 +2,11 @@ Flask==1.0.2
 google-cloud-storage==1.19.1
 gunicorn==19.6.0
 oauth2client==3.0.0
-google-cloud-storage==1.28.0
 google-cloud-tasks==1.5.0
 googleapis-common-protos==1.51.0
 pymysql
 google-cloud-language==1.3.0
+<<<<<<< HEAD
 honcho==1.0.1
+=======
+>>>>>>> b9e581bc465158c6a2d921b2d52aeaad37cc1cfc
