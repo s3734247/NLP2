@@ -17,8 +17,11 @@ from google.protobuf import timestamp_pb2
 from google.cloud import language
 from google.cloud.language import enums
 from google.cloud.language import types
+from google.cloud import logging
+import ast
 
-
+log_client = logging.Client()
+logger = log_client.logger("cloudfunctions.googleapis.com%2Fcloud-functions")
 
 
 ALLOWED_EXTENSIONS = {'xml'}
@@ -50,21 +53,25 @@ def server_error(e):
 @app.route('/')
 def hello():
     #print('Received task with payload: {}'.format(payload))
-    logging.exception('Hello this is Hello')
-    return render_template('index.html',messg="hello")
+    #logging.exception('Hello this is Hello')
+    
+    logger.log_text(" hello from Compure engine ")
+    return render_template('index.html',messg="heeeee4llo")
+    
 
 
 
 @app.route('/NLP_to', methods=['POST'])
 def NLP_to():
     """Log the request payload."""
-    logging.exception('This is NLP_to')
-    logging.exception(payload1)
-    logging.exception(type(payload1))
-    payload1 = request.json
-    mess22=google_NLP(payload1)
+    logger.log_text('welcome to NLP')
+    payload = request.get_data(as_text=True) or '(empty payload)'
+    logger.log_text('Received task with payload: {}'.format(payload))
+    payload = ast.literal_eval(payload)
+    logger.log_text("convert")
+    google_NLP(payload)
     print('Received task with payload')
-    #return 'Printed task payload: {}'.format(payload)
+    return 'Printed task payload: {}'.format(payload)
 # [END cloud_tasks_appengine_quickstart]
 
 
