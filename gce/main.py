@@ -49,7 +49,7 @@ def server_error(e):
 
 @app.route('/')
 def hello():
-    print('Received task with payload: {}'.format(payload))
+    #print('Received task with payload: {}'.format(payload))
     return render_template('index.html',messg="hello")
 
 
@@ -57,10 +57,10 @@ def hello():
 @app.route('/NLP_to', methods=['POST'])
 def NLP_to():
     """Log the request payload."""
-    payload = request.get_data(as_text=True) or '(empty payload)'
-    mess22=google_NLP(payload)
-    print('Received task with payload: {}'.format(payload))
-    return 'Printed task payload: {}'.format(payload)
+    payload1 = request.json
+    mess22=google_NLP(payload1)
+    print('Received task with payload')
+    #return 'Printed task payload: {}'.format(payload)
 # [END cloud_tasks_appengine_quickstart]
 
 
