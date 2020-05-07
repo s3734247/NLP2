@@ -50,6 +50,7 @@ def server_error(e):
 @app.route('/')
 def hello():
     #print('Received task with payload: {}'.format(payload))
+    logging.exception('Hello this is Hello')
     return render_template('index.html',messg="hello")
 
 
@@ -57,6 +58,9 @@ def hello():
 @app.route('/NLP_to', methods=['POST'])
 def NLP_to():
     """Log the request payload."""
+    logging.exception('This is NLP_to')
+    logging.exception(payload1)
+    logging.exception(type(payload1))
     payload1 = request.json
     mess22=google_NLP(payload1)
     print('Received task with payload')
